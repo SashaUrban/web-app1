@@ -7,8 +7,10 @@ from rest_framework_swagger.views import get_swagger_view
 from django.conf.urls import url
 
 
-from .models import Article, Commentary
+from .models import Article, Commentary, ConnectedUsers
 from .serializers import ArticleSerializer, CommentarySerializers
+from django.http import HttpResponse
+from django.shortcuts import render
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -49,3 +51,32 @@ class CommentaryViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
     serializer_class = CommentarySerializers
+
+
+def index(request):
+    articles = [user for user in Article.objects.all()]
+    return render(request, 'index.html', {
+        'articles': articles
+    })
+
+
+def room(request, article_id):
+    # Send article by id to user
+    article = Article.objects.get(id=article_id)
+    comments = [c for c in Commentary.objects.filter(article_id=article_id)]
+    if article:
+        return render(request, 'room.html', {
+            'article_id': article_id,
+            'comments': comments,
+            'article': article
+        })
+    else:
+        return HttpResponse('Wrong Article id')
+
+
+def users_online(request):
+    if request.user.is_authenticated:
+        connected_users = [user for user in ConnectedUsers.objects.all()]
+        return render(request, 'online.html', {
+            'connected_users': connected_users
+        })

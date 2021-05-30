@@ -58,7 +58,7 @@ ROOT_URLCONF = 'webproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['markup/templates'],
+        'DIRS': ['webapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +75,10 @@ WSGI_APPLICATION = 'webproject.wsgi.application'
 ASGI_APPLICATION = "webproject.asgi.application"
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("0.0.0.0", 6379)],
+        },
     }
 }
 
@@ -101,6 +104,13 @@ DATABASES = {
     }
 }
 
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "sasha.s1mple.urban@gmail.com"
+EMAIL_HOST_PASSWORD = "qwertys1mple"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

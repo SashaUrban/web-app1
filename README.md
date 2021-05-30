@@ -12,3 +12,11 @@
 Виконав студент групи КВ-01мп: _Олійник Олександр_
 
 [Google Document](https://docs.google.com/document/d/1iK6Ja-oiHVse47hO0lIrJvvio1qobVNop4SlUSBN4XY/edit?usp=sharing)
+
+
+***Лабораторна робота №3***
+
+Виконав студент групи КВ-01мп: _Олійник Олександр_
+
+[Google Document](https://docs.google.com/document/d/1idmmsiyJ7mCsT3bUehlSn6ZtU81J9dhnFiHSK7AHlHQ/edit?usp=sharing)
+
